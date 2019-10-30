@@ -1,7 +1,7 @@
 package com.zyd.blog.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.zyd.blog.business.annotation.BussinessLog;
+import com.zyd.blog.business.annotation.BusinessLog;
 import com.zyd.blog.business.entity.User;
 import com.zyd.blog.business.enums.ResponseStatus;
 import com.zyd.blog.business.service.SysUserRoleService;
@@ -55,7 +55,7 @@ public class RestUserController {
      */
     @RequiresPermissions("user:allotRole")
     @PostMapping("/saveUserRoles")
-    @BussinessLog("分配用户角色")
+    @BusinessLog("分配用户角色")
     public ResponseVO saveUserRoles(Long userId, String roleIds) {
         if (StringUtils.isEmpty(userId)) {
             return ResultUtil.error("error");
@@ -66,7 +66,7 @@ public class RestUserController {
 
     @RequiresPermissions("user:add")
     @PostMapping(value = "/add")
-    @BussinessLog("添加用户")
+    @BusinessLog("添加用户")
     public ResponseVO add(User user) {
         User u = userService.getByUserName(user.getUsername());
         if (u != null) {
@@ -84,7 +84,7 @@ public class RestUserController {
 
     @RequiresPermissions(value = {"user:batchDelete", "user:delete"}, logical = Logical.OR)
     @PostMapping(value = "/remove")
-    @BussinessLog("删除用户")
+    @BusinessLog("删除用户")
     public ResponseVO remove(Long[] ids) {
         if (null == ids) {
             return ResultUtil.error(500, "请至少选择一条记录");
@@ -98,14 +98,14 @@ public class RestUserController {
 
     @RequiresPermissions("user:get")
     @PostMapping("/get/{id}")
-    @BussinessLog("获取用户详情")
+    @BusinessLog("获取用户详情")
     public ResponseVO get(@PathVariable Long id) {
         return ResultUtil.success(null, this.userService.getByPrimaryKey(id));
     }
 
     @RequiresPermissions("user:edit")
     @PostMapping("/edit")
-    @BussinessLog("编辑用户")
+    @BusinessLog("编辑用户")
     public ResponseVO edit(User user) {
         try {
             userService.updateSelective(user);

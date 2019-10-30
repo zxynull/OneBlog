@@ -1,7 +1,7 @@
 package com.zyd.blog.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.zyd.blog.business.annotation.BussinessLog;
+import com.zyd.blog.business.annotation.BusinessLog;
 import com.zyd.blog.business.entity.Link;
 import com.zyd.blog.business.enums.LinkSourceEnum;
 import com.zyd.blog.business.enums.ResponseStatus;
@@ -46,7 +46,7 @@ public class RestLinkController {
 
     @RequiresPermissions("link:add")
     @PostMapping(value = "/add")
-    @BussinessLog("添加友情链接")
+    @BusinessLog("添加友情链接")
     public ResponseVO add(Link link) {
         link.setSource(LinkSourceEnum.ADMIN);
         linkService.insert(link);
@@ -56,7 +56,7 @@ public class RestLinkController {
 
     @RequiresPermissions(value = {"link:batchDelete", "link:delete"}, logical = Logical.OR)
     @PostMapping(value = "/remove")
-    @BussinessLog("删除友情链接")
+    @BusinessLog("删除友情链接")
     public ResponseVO remove(Long[] ids) {
         if (null == ids) {
             return ResultUtil.error(500, "请至少选择一条记录");
@@ -69,14 +69,14 @@ public class RestLinkController {
 
     @RequiresPermissions("link:get")
     @PostMapping("/get/{id}")
-    @BussinessLog("获取友情链接详情")
+    @BusinessLog("获取友情链接详情")
     public ResponseVO get(@PathVariable Long id) {
         return ResultUtil.success(null, this.linkService.getByPrimaryKey(id));
     }
 
     @RequiresPermissions("link:edit")
     @PostMapping("/edit")
-    @BussinessLog("编辑友情链接")
+    @BusinessLog("编辑友情链接")
     public ResponseVO edit(Link link) {
         try {
             linkService.updateSelective(link);

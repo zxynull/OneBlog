@@ -1,7 +1,7 @@
 package com.zyd.blog.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.zyd.blog.business.annotation.BussinessLog;
+import com.zyd.blog.business.annotation.BusinessLog;
 import com.zyd.blog.business.entity.Tags;
 import com.zyd.blog.business.enums.ResponseStatus;
 import com.zyd.blog.business.service.BizTagsService;
@@ -41,7 +41,7 @@ public class RestTagController {
 
     @RequiresPermissions("tag:add")
     @PostMapping(value = "/add")
-    @BussinessLog("添加标签")
+    @BusinessLog("添加标签")
     public ResponseVO add(Tags tags) {
         tags = tagsService.insert(tags);
         return ResultUtil.success("标签添加成功！新标签 - " + tags.getName(), tags);
@@ -49,7 +49,7 @@ public class RestTagController {
 
     @RequiresPermissions(value = {"tag:batchDelete", "tag:delete"}, logical = Logical.OR)
     @PostMapping(value = "/remove")
-    @BussinessLog("删除标签")
+    @BusinessLog("删除标签")
     public ResponseVO remove(Long[] ids) {
         if (null == ids) {
             return ResultUtil.error(500, "请至少选择一条记录");
@@ -62,14 +62,14 @@ public class RestTagController {
 
     @RequiresPermissions("tag:get")
     @PostMapping("/get/{id}")
-    @BussinessLog("获取标签详情")
+    @BusinessLog("获取标签详情")
     public ResponseVO get(@PathVariable Long id) {
         return ResultUtil.success(null, this.tagsService.getByPrimaryKey(id));
     }
 
     @RequiresPermissions("tag:edit")
     @PostMapping("/edit")
-    @BussinessLog("编辑标签")
+    @BusinessLog("编辑标签")
     public ResponseVO edit(Tags tags) {
         try {
             tagsService.updateSelective(tags);

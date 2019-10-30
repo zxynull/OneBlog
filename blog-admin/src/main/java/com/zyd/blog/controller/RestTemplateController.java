@@ -1,7 +1,7 @@
 package com.zyd.blog.controller;
 
 import com.github.pagehelper.PageInfo;
-import com.zyd.blog.business.annotation.BussinessLog;
+import com.zyd.blog.business.annotation.BusinessLog;
 import com.zyd.blog.business.entity.Template;
 import com.zyd.blog.business.enums.ResponseStatus;
 import com.zyd.blog.business.service.SysTemplateService;
@@ -41,7 +41,7 @@ public class RestTemplateController {
 
     @RequiresPermissions("template:add")
     @PostMapping(value = "/add")
-    @BussinessLog("添加模板")
+    @BusinessLog("添加模板")
     public ResponseVO add(Template template) {
         templateService.insert(template);
         return ResultUtil.success("成功");
@@ -49,7 +49,7 @@ public class RestTemplateController {
 
     @RequiresPermissions(value = {"template:batchDelete", "template:delete"}, logical = Logical.OR)
     @PostMapping(value = "/remove")
-    @BussinessLog("删除模板")
+    @BusinessLog("删除模板")
     public ResponseVO remove(Long[] ids) {
         if (null == ids) {
             return ResultUtil.error(500, "请至少选择一条记录");
@@ -62,14 +62,14 @@ public class RestTemplateController {
 
     @RequiresPermissions("template:get")
     @PostMapping("/get/{id}")
-    @BussinessLog("获取模板详情")
+    @BusinessLog("获取模板详情")
     public ResponseVO get(@PathVariable Long id) {
         return ResultUtil.success(null, this.templateService.getByPrimaryKey(id));
     }
 
     @RequiresPermissions("template:edit")
     @PostMapping("/edit")
-    @BussinessLog("编辑模板")
+    @BusinessLog("编辑模板")
     public ResponseVO edit(Template template) {
         try {
             templateService.updateSelective(template);

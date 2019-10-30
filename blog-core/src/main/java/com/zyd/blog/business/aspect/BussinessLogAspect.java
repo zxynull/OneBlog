@@ -1,6 +1,6 @@
 package com.zyd.blog.business.aspect;
 
-import com.zyd.blog.business.annotation.BussinessLog;
+import com.zyd.blog.business.annotation.BusinessLog;
 import com.zyd.blog.business.enums.PlatformEnum;
 import com.zyd.blog.business.service.SysLogService;
 import com.zyd.blog.util.AspectUtil;
@@ -34,7 +34,7 @@ public class BussinessLogAspect {
     @Autowired
     private SysLogService logService;
 
-    @Pointcut(value = "@annotation(com.zyd.blog.business.annotation.BussinessLog)")
+    @Pointcut(value = "@annotation(com.zyd.blog.business.annotation.BusinessLog)")
     public void pointcut() {
     }
 
@@ -56,7 +56,7 @@ public class BussinessLogAspect {
     private void handle(ProceedingJoinPoint point) throws Exception {
         Method currentMethod = AspectUtil.INSTANCE.getMethod(point);
         //获取操作名称
-        BussinessLog annotation = currentMethod.getAnnotation(BussinessLog.class);
+        BusinessLog annotation = currentMethod.getAnnotation(BusinessLog.class);
         boolean save = annotation.save();
         PlatformEnum platform = annotation.platform();
         String bussinessName = AspectUtil.INSTANCE.parseParams(point.getArgs(), annotation.value());

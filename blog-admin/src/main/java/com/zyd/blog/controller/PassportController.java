@@ -1,6 +1,6 @@
 package com.zyd.blog.controller;
 
-import com.zyd.blog.business.annotation.BussinessLog;
+import com.zyd.blog.business.annotation.BusinessLog;
 import com.zyd.blog.business.entity.UserPwd;
 import com.zyd.blog.business.service.SysUserService;
 import com.zyd.blog.framework.holder.RequestHolder;
@@ -46,7 +46,7 @@ public class PassportController {
     @Autowired
     private SysUserService userService;
 
-    @BussinessLog("进入登录页面")
+    @BusinessLog("进入登录页面")
     @GetMapping("/login")
     public ModelAndView login(Model model) {
         model.addAttribute("enableKaptcha", config.isEnableKaptcha());
@@ -60,7 +60,7 @@ public class PassportController {
      * @param password
      * @return
      */
-    @BussinessLog("[{1}]登录系统")
+    @BusinessLog("[{1}]登录系统")
     @PostMapping("/signin")
     @ResponseBody
     public ResponseVO submitLogin(String username, String password, boolean rememberMe, String kaptcha) {
@@ -98,7 +98,7 @@ public class PassportController {
      *
      * @return
      */
-    @BussinessLog("修改密码")
+    @BusinessLog("修改密码")
     @PostMapping("/updatePwd")
     @ResponseBody
     public ResponseVO updatePwd(@Validated UserPwd userPwd, BindingResult bindingResult) throws Exception {
@@ -116,7 +116,7 @@ public class PassportController {
      * @param redirectAttributes
      * @return
      */
-    @BussinessLog("退出系统")
+    @BusinessLog("退出系统")
     @GetMapping("/logout")
     public ModelAndView logout(RedirectAttributes redirectAttributes) {
         // http://www.oschina.net/question/99751_91561

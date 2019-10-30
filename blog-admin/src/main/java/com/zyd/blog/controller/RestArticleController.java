@@ -2,7 +2,7 @@ package com.zyd.blog.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
-import com.zyd.blog.business.annotation.BussinessLog;
+import com.zyd.blog.business.annotation.BusinessLog;
 import com.zyd.blog.business.entity.Article;
 import com.zyd.blog.business.enums.BaiduPushTypeEnum;
 import com.zyd.blog.business.enums.ConfigKeyEnum;
@@ -54,7 +54,7 @@ public class RestArticleController {
 
     @RequiresPermissions(value = {"article:batchDelete", "article:delete"}, logical = Logical.OR)
     @PostMapping(value = "/remove")
-    @BussinessLog("删除文章[{1}]")
+    @BusinessLog("删除文章[{1}]")
     public ResponseVO remove(Long[] ids) {
         if (null == ids) {
             return ResultUtil.error(500, "请至少选择一条记录");
@@ -67,14 +67,14 @@ public class RestArticleController {
 
     @RequiresPermissions("article:get")
     @PostMapping("/get/{id}")
-    @BussinessLog("获取文章[{1}]详情")
+    @BusinessLog("获取文章[{1}]详情")
     public ResponseVO get(@PathVariable Long id) {
         return ResultUtil.success(null, this.articleService.getByPrimaryKey(id));
     }
 
     @RequiresPermissions(value = {"article:edit", "article:publish"}, logical = Logical.OR)
     @PostMapping("/save")
-    @BussinessLog("发布文章")
+    @BusinessLog("发布文章")
     public ResponseVO edit(Article article, Long[] tags, MultipartFile file) {
         articleService.publish(article, tags, file);
         return ResultUtil.success(ResponseStatus.SUCCESS);
@@ -82,7 +82,7 @@ public class RestArticleController {
 
     @RequiresPermissions(value = {"article:top", "article:recommend"}, logical = Logical.OR)
     @PostMapping("/update/{type}")
-    @BussinessLog("修改文章[{2}]的状态[{1}]")
+    @BusinessLog("修改文章[{2}]的状态[{1}]")
     public ResponseVO update(@PathVariable("type") String type, Long id) {
         articleService.updateTopOrRecommendedById(type, id);
         return ResultUtil.success(ResponseStatus.SUCCESS);
@@ -90,7 +90,7 @@ public class RestArticleController {
 
     @RequiresPermissions(value = {"article:batchPush", "article:push"}, logical = Logical.OR)
     @PostMapping(value = "/pushToBaidu/{type}")
-    @BussinessLog("推送文章[{2}]到百度站长平台")
+    @BusinessLog("推送文章[{2}]到百度站长平台")
     public ResponseVO pushToBaidu(@PathVariable("type") BaiduPushTypeEnum type, Long[] ids) {
         if (null == ids) {
             return ResultUtil.error(500, "请至少选择一条记录");
@@ -115,7 +115,7 @@ public class RestArticleController {
 
     @RequiresPermissions(value = {"article:publish"}, logical = Logical.OR)
     @PostMapping(value = "/batchPublish")
-    @BussinessLog("批量发布文章[{1}]")
+    @BusinessLog("批量发布文章[{1}]")
     public ResponseVO batchPublish(Long[] ids) {
         if (null == ids) {
             return ResultUtil.error(500, "请至少选择一条记录");

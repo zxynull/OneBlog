@@ -1,6 +1,6 @@
 package com.zyd.blog.controller;
 
-import com.zyd.blog.business.annotation.BussinessLog;
+import com.zyd.blog.business.annotation.BusinessLog;
 import com.zyd.blog.business.entity.Template;
 import com.zyd.blog.business.enums.PlatformEnum;
 import com.zyd.blog.business.enums.TemplateKeyEnum;
@@ -36,25 +36,25 @@ public class RestWebSiteController {
     private SysConfigService configService;
 
     @GetMapping(value = "/sitemap.xml", produces = {"application/xml"})
-    @BussinessLog(value = "查看sitemap.xml", platform = PlatformEnum.WEB)
+    @BusinessLog(value = "查看sitemap.xml", platform = PlatformEnum.WEB)
     public String sitemapXml() {
         return getSitemap(TemplateKeyEnum.TM_SITEMAP_XML);
     }
 
     @GetMapping(value = "/sitemap.txt", produces = {"text/plain"})
-    @BussinessLog(value = "查看sitemap.txt", platform = PlatformEnum.WEB)
+    @BusinessLog(value = "查看sitemap.txt", platform = PlatformEnum.WEB)
     public String sitemapTxt() {
         return getSitemap(TemplateKeyEnum.TM_SITEMAP_TXT);
     }
 
     @GetMapping(value = "/sitemap.html", produces = {"text/html"})
-    @BussinessLog(value = "查看sitemap.html", platform = PlatformEnum.WEB)
+    @BusinessLog(value = "查看sitemap.html", platform = PlatformEnum.WEB)
     public String sitemapHtml() {
         return getSitemap(TemplateKeyEnum.TM_SITEMAP_HTML);
     }
 
     @GetMapping(value = "/robots.txt", produces = {"text/plain"})
-    @BussinessLog(value = "查看robots", platform = PlatformEnum.WEB)
+    @BusinessLog(value = "查看robots", platform = PlatformEnum.WEB)
     public String robots() {
         Template template = templateService.getTemplate(TemplateKeyEnum.TM_ROBOTS);
         Map<String, Object> map = new HashMap<>();

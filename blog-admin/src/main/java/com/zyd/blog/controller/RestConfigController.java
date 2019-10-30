@@ -1,6 +1,6 @@
 package com.zyd.blog.controller;
 
-import com.zyd.blog.business.annotation.BussinessLog;
+import com.zyd.blog.business.annotation.BusinessLog;
 import com.zyd.blog.business.service.SysConfigService;
 import com.zyd.blog.framework.object.ResponseVO;
 import com.zyd.blog.util.ResultUtil;
@@ -37,7 +37,7 @@ public class RestConfigController {
 
     @RequiresRoles("role:root")
     @PostMapping("/save")
-    @BussinessLog("修改系统配置")
+    @BusinessLog("修改系统配置")
     public ResponseVO save(@RequestParam Map<String, String> configs,
                            @RequestParam(required = false) MultipartFile wxPraiseCode,
                            @RequestParam(required = false) MultipartFile zfbPraiseCode) {

@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface BussinessLog {
+public @interface BusinessLog {
     /**
      * 业务的名称
      */
