@@ -19,7 +19,7 @@
                 </div>
                 <h5 class="custom-title"><i class="fa fa-coffee fa-fw"></i><strong>关于博客</strong><small></small></h5>
                 <div class="info">
-                    本站为非商业化站点，无盈利性质，为博主个人博客。 <a href="www.baidu.com" title="" data-toggle="tooltip" data-placement="right" target="_blank" data-original-title="欢迎访问本人的博客"><strong>浩瀚新宇</strong></a>。<br>
+                    本站为非商业化站点，无盈利性质，为博主个人博客。 <a href="" title="" data-toggle="tooltip" data-placement="right" target="_blank" data-original-title="欢迎访问本人的博客"><strong>浩瀚新宇</strong></a>。<br>
                 </div>
                 <h5 class="custom-title"><i class="fa fa-copyright fa-fw"></i><strong>关于版权</strong><small></small></h5>
                 <div class="info">

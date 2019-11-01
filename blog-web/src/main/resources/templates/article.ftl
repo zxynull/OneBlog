@@ -96,7 +96,7 @@
             </div>
             <div class="blog-body">
                 <a href="http://q06jvuo2z.bkt.clouddn.com/oneblog/20191031144658558.jpg" target="_blank" rel="external nofollow">
-                    <img src="" alt="广告需求请联系博主" class="img-responsive" style="width: 100%;">
+                    <img alt="广告需求请联系博主" class="img-responsive" style="width: 100%;">
                 </a>
             </div>
             <div class="blog-body prev-next">
